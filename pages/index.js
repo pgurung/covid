@@ -41,16 +41,16 @@ export default () => {
         Date: format(new Date(c.Date), "MM/dd/yyyy"),
       }));
 
-      const casesForDisplay = [];
-      let currentDate = formattedCases[0].Date;
+      const casesForDisplay = [formattedCases[formattedCases.length -1]];
+      let currentDate = formattedCases[formattedCases.length -1].Date;
 
-      for (let i = 1; i < formattedCases.length; i++) {
+      for (let i = formattedCases.length - 1; 0 < i; i--) {
         if (currentDate !== formattedCases[i].Date) {
           currentDate = formattedCases[i].Date;
-          casesForDisplay.push(formattedCases[i - 1]);
+          casesForDisplay.push(formattedCases[i]);
         }
       }
-      setCaseHistory(casesForDisplay);
+      setCaseHistory(casesForDisplay.reverse());
 
       setTotalConfirmed(mnCases[mnCases.length - 1].Cases);
     }
